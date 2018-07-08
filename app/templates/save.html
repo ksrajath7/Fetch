@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h4>Saved data in database</h4>
+
+<ol>
+    {% for d in data %}
+        <a href="/display/{{ d.id }}"><li>{{ d.origin }} -> {{ d.destination }} [ {{d.date}} ]</li></a>
+    {% endfor %}
+</ol>
+
+
+{% endblock %}

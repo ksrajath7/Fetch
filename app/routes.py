@@ -9,33 +9,59 @@ from app.models import Flight, Itinerary, Journey
 def index():
     return render_template("index.html")
 
+@app.route("/saved", methods=['GET'])
+def saved():
+    data = Journey.query.all()
+    return render_template('save.html', data=list(data))
 
-@app.route("/display", methods=['POST'])
-def display():
+@app.route("/display", defaults={'journey_id': None}, methods=['GET','POST'])
+@app.route("/display/<int:journey_id>", methods=['GET','POST'])
+def display(journey_id):
+    if request.method == 'POST':
+        origin = request.form.get('source_city')    
+        destination = request.form.get('destination_city')
+        date = request.form.get('date_of_departure')
+        update_db = request.form.get('add_to_database')
+        currency = "INR"
 
-    origin = request.form.get('source_city')    
-    destination = request.form.get('destination_city')
-    date = request.form.get('date_of_departure')
-    currency = "INR"
+        res = requests.get("https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search",
+                            params={"apikey": app.config['API_KEY'], "origin": origin,
+                            "destination": destination, "departure_date": date, "currency": currency})
 
-    res = requests.get("https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search",
-                        params={"apikey": app.config['API_KEY'], "origin": origin,
-                        "destination": destination, "departure_date": date, "currency": currency})
+        if res.status_code != 200:
+            raise Exception("ERROR: API request unsuccessful.")
 
-    if res.status_code != 200:
-        raise Exception("ERROR: API request unsuccessful.")
+        data = res.json()
 
-    data = res.json()
+        # Add condition to update database
+        if update_db == "yes":
+            add_to_database(origin, destination, date,  data)
 
-    # Add condition to update database
-    if False:
-        add_to_database(origin, destination, data)
+        return render_template("display.html", data=refactor_data(origin, destination, date, data))
+    else:
+        if journey_id == None:
+            return "<h1>Error in ID</h1>"
+        journey = Journey.query.get(journey_id)
+        data = {'origin': journey.origin, 'destination': journey.destination,
+                'date': journey.date}
+        new_list = []
+        for it in journey.itineraries:
+            new_dict = {'duration': it.duration, 'price_per_adult': it.price_per_adult,
+                        'tax': it.tax}
+            flight_list = []
+            for flight in it.flights:
+                flight_dict = {'flight_number': flight.flight_number,
+                                'airline': flight.airline,
+                                'origin': flight.origin,
+                                'destination': flight.destination,
+                                'departure_time': flight.departure_time,
+                                'arrival_time': flight.arrival_time}
+                flight_list.append(flight_dict)
+            new_dict['flights'] = flight_list
+            new_list.append(new_dict)
+        data['itineraries'] =  new_list
 
-    
-
-    return jsonify(refactor_data(origin, destination, date, data))
-    # return render_template("display.html", journey=j)
-
+        return render_template("display.html", data=data)
 
 
 def add_to_database(origin, destination, date, data):

@@ -5,8 +5,11 @@
     <input type="text" name="source_city" placeholder="Source City">
     <input type="text" name="destination_city" placeholder="Destination City">
     <input type="date" name="date_of_departure">
+    <input type="checkbox" name="add_to_database" value="yes">Add to database<br>
     <input type="submit" value="Submit">
 </form>
+
+<a href=" {{ url_for('saved') }}">Saved data in database</a>
 
 
 {% endblock %}

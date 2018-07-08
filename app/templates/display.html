@@ -1,9 +1,56 @@
 {% extends "base.html" %}
 {% block content %}
 
-{% for it in journey.iterinaries %}
-    {{ it.duration }}
-{% endfor %}
 
+<table class="table">
+    <tr>
+        <th colspan="5">Date</th>
+        <td colspan="5">{{ data.date }}</td>
+    </tr>
+    <tr>
+        <th colspan="5">From</th>
+        <td colspan="5">{{ data.origin }}</td>
+    </tr>
+    <tr>
+        <th colspan="5">To</th>
+        <td colspan="5">{{ data.destination }}</td>
+    </tr>
+    <tr>
+        <th  colspan="6">Flights</th>
+        <th>Duration</th>
+        <th>Price Per Adult</th>
+        <th>Tax</th>
+    </tr>
+    {% for it in data.itineraries %}
+        <tr>
+            <th>Airline Code</th>
+            <th>Flight Number</th>
+            <th>Origin</th>
+            <th>Destination</th>
+            <th>Arrival Time</th>
+            <th>Departure Time</th>
+            <td rowspan="4">{{ it.duration }}</td>
+            <td rowspan="4">{{ it.price_per_adult }}</td>
+            <td rowspan="4">{{ it.tax }}</td>
+        </tr>
+        {% for flight in it.flights %}
+            <tr>
+                <td>{{ flight.airline }}</td>
+                <td>{{ flight.flight_number }}</td>
+                <td>{{ flight.origin }}</td>
+                <td>{{ flight.destination }}</td>
+                <td>{{ flight.arrival_time }}</td>
+                <td>{{ flight.departure_time }}</td>
+            </tr>
+        {% endfor %}
+    {% endfor %}
+</table>
+
+<script src="{{ url_for('static', filename='js/xlsx.full.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/FileSaver.js') }}"></script>
+<script src="{{ url_for('static', filename='js/tableexport.js') }}"></script>
+<script>
+    $("table").tableExport();
+</script>
 
 {% endblock %}
