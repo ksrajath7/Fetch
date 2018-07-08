@@ -1,4 +1,4 @@
-from app import models
+from app import models, db
 from app.models import Journey
 
 def add_to_database(origin, destination, date, data):
