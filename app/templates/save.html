@@ -5,9 +5,24 @@
 
 <ol>
     {% for d in data %}
-        <a href="/display/{{ d.id }}"><li>{{ d.origin }} -> {{ d.destination }} [ {{d.date}} ]</li></a>
+        <a href="/display/{{ d.id }}"><li><h4>{{ d.origin }} ----> {{ d.destination }} [ {{d.date}} ]</h4></li></a>
     {% endfor %}
 </ol>
+
+<!-- <table class="table">
+    <tr>
+        <th>Origin</th>
+        <th>Destination</th>
+        <th>Date</th>
+    </tr>
+    {% for d in data %}
+        <tr>
+            <td><a href="/display/{{ d.id }}">{{ d.origin }}</a></td>
+            <td><a href="/display/{{ d.id }}">{{ d.destination }}</a></td>
+            <td><a href="/display/{{ d.id }}">{{ d.date }}</a></td>
+        </tr>
+    {% endfor %}
+</table> -->
 
 
 {% endblock %}
