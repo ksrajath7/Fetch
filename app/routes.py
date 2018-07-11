@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, jsonify
 from app import app, db
 from app.models import Flight, Itinerary, Journey
 
-from app.helper import add_to_database, refactor_data, dictify
+from app.helper import add_to_database, refactor_data
 
 @app.route("/")
 def index():
@@ -34,14 +34,15 @@ def display(journey_id):
 
         data = res.json()
 
-        # Add condition to update database
         if update_db == "yes":
-            add_to_database(origin, destination, date,  data)
-
-        return render_template("display.html", data=refactor_data(origin, destination, date, data))
+            journey_id = add_to_database(origin, destination, date,  data)
+            return render_template("display.html", data=Journey.query.get(journey_id).serialize)
+        else:
+            return render_template("display.html", data=refactor_data(origin, destination, date, data))
     else:
         if journey_id == None:
             return "<h1>Error in ID</h1>"
-        data = dictify(journey_id)
-        return render_template("display.html", data=data)
+        
+        return render_template("display.html", data=Journey.query.get(journey_id).serialize)
+
 

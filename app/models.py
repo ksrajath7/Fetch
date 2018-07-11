@@ -20,6 +20,20 @@ class Journey(db.Model):
             db.session.commit()
             i.add_flight(result['itineraries'][0]['outbound']['flights'])
 
+    @property
+    def serialize(self):
+        """Return object data in easily serializeable format"""
+        return {
+            'origin': self.origin,
+            'destination': self.destination,
+            'date': self.date,
+            'itineraries': self.serialize_itineraries
+        }
+
+    @property
+    def serialize_itineraries(self):
+        return [ item.serialize for item in self.itineraries ]
+
 
 
 
@@ -46,6 +60,22 @@ class Itinerary(db.Model):
             db.session.add(f)
             db.session.commit()
 
+    @property
+    def serialize(self):
+        return {
+            'duration': self.duration,
+            'price_per_adult': self.price_per_adult,
+            'tax': self.tax,
+            'flights': self.serialize_flights
+        }
+    
+    @property
+    def serialize_flights(self):
+        return [ item.serialize for item in self.flights ]
+    
+
+    
+
 
 class Flight(db.Model):
     __tablename__ = "flights"
@@ -59,5 +89,15 @@ class Flight(db.Model):
 
     itinerary_id = db.Column(db.Integer, db.ForeignKey("itineraries.id"), nullable=False)
 
+    @property
+    def serialize(self):
+        return {
+            'flight_number': self.flight_number,
+            'airline': self.airline,
+            'origin': self.origin,
+            'destination': self.destination,
+            'departure_time': self.departure_time,
+            'arrival_time': self.arrival_time
+        }
 
 

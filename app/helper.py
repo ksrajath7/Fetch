@@ -6,6 +6,7 @@ def add_to_database(origin, destination, date, data):
     db.session.add(j)
     db.session.commit()
     j.add_itinerary(data['results'])
+    return j.id
 
 
 def refactor_data(origin, destination, date, data):
@@ -38,26 +39,4 @@ def refactor_data(origin, destination, date, data):
 
     return new_data
 
-def dictify(journey_id):
-    journey = Journey.query.get(journey_id)
-    data = {'origin': journey.origin, 'destination': journey.destination,
-            'date': journey.date}
-    new_list = []
-    for it in journey.itineraries:
-        new_dict = {'duration': it.duration, 'price_per_adult': it.price_per_adult,
-                    'tax': it.tax}
-        flight_list = []
-        for flight in it.flights:
-            flight_dict = {'flight_number': flight.flight_number,
-                            'airline': flight.airline,
-                            'origin': flight.origin,
-                            'destination': flight.destination,
-                            'departure_time': flight.departure_time,
-                            'arrival_time': flight.arrival_time}
-            flight_list.append(flight_dict)
-        new_dict['flights'] = flight_list
-        new_list.append(new_dict)
-    data['itineraries'] =  new_list
-    return data
-    
-    
+
