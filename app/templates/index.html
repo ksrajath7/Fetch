@@ -2,14 +2,39 @@
 {% block content %}
 
 <form action="/display" method="POST" id="input_form">
-    <input type="text" name="source_city" placeholder="Source City (eg COK)">
-    <input type="text" name="destination_city" placeholder="Destination City (eg BOS)">
-    <input type="date" name="date_of_departure">
+    <!-- <input type="text" name="source_city" placeholder="Source City (eg COK)"> -->
+    <input list="source" name="source_city" placeholder="Source City">
+    <datalist id="source">
+        {% for i in iata %}
+        <option value="{{ i.code }}" label="{{ i.name }}">
+        {% endfor %}
+    </datalist>
+
+    <input list="destination" name="destination_city" placeholder="Destination City">
+    <datalist id="destination">
+        {% for i in iata %}
+        <option value="{{ i.code }}" label="{{ i.name }}">
+        {% endfor %}
+    </datalist>
+
+    <!-- <input type="text" name="destination_city" placeholder="Destination City (eg BOS)"> -->
+    <input type="text" id="datepicker" name="date_of_departure" placeholder="yyyy-mm-dd">
     <input type="checkbox" name="add_to_database" value="yes">Add to database<br>
     <input type="submit" value="Submit">
 </form>
 
 <a href=" {{ url_for('saved') }}">Saved data in database</a>
 
+<script>
+    $( function() {
+        
+        $( "#datepicker" ).datepicker({ minDate: 0 });
+        $("#datepicker").on("change", function(){
+            $("#datepicker").datepicker("option", "showAnim", "slideDown");
+            $( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+        })
+    });
+
+</script>
 
 {% endblock %}

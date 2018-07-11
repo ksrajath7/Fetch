@@ -8,7 +8,50 @@ from app.helper import add_to_database, refactor_data
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    iata = [
+        {'name': 'New Delhi, India',
+         'code': 'DEL'},
+        {'name': 'Mumbai, India',
+         'code': 'BOM'},
+         {'name': 'Bangalore, India',
+         'code': 'BLR'},
+         {'name': 'Goa, India',
+         'code': 'GOI'},
+         {'name': 'Chennai, India',
+         'code': 'MAA'},
+         {'name': 'Kolkata, India',
+         'code': 'CCU'},
+         {'name': 'HYD, India',
+         'code': 'HYD'},
+         {'name': 'Pune, India',
+         'code': 'PNQ'},
+         {'name': 'Ahmedabad, India',
+         'code': 'AMD'},
+         {'name': 'Cochin, India',
+         'code': 'COK'},
+         {'name': 'Jaipur, India',
+         'code': 'JAI'},
+         {'name': 'Dubai, UAE',
+         'code': 'DXB'},
+         {'name': 'Singapore, Singapore',
+         'code': 'SIN'},
+         {'name': 'Bangkok, Thailand',
+         'code': 'DEL'},
+         {'name': 'New York, US - All Airports',
+         'code': 'NYC'},
+         {'name': 'Kuala Lumpur, Malaysia',
+         'code': 'KUL'},
+         {'name': 'London, UK - All Airports',
+         'code': 'LON'},
+         {'name': 'Hong Kong, China',
+         'code': 'HKG'},
+         {'name': 'Doha, Qatar',
+         'code': 'DOH'},
+         {'name': 'Colombo, Sri Lanka',
+         'code': 'CMB'}
+    ]
+
+    return render_template("index.html", iata=iata)
 
 @app.route("/saved", methods=['GET'])
 def saved():

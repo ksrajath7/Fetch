@@ -2,7 +2,7 @@
 {% block content %}
 
 
-<table class="table">
+<table class="table" id="myTable">
     <tr>
         <th colspan="5">Date</th>
         <td colspan="5">{{ data.date }}</td>
@@ -45,6 +45,7 @@
         {% endfor %}
     {% endfor %}
 </table>
+
 
 <script src="{{ url_for('static', filename='js/xlsx.full.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/FileSaver.js') }}"></script>
