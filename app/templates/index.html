@@ -1,29 +1,83 @@
 {% extends "base.html" %}
 {% block content %}
 
-<form action="/display" method="POST" id="input_form">
-    <!-- <input type="text" name="source_city" placeholder="Source City (eg COK)"> -->
-    <input list="source" name="source_city" placeholder="Source City">
-    <datalist id="source">
-        {% for i in iata %}
-        <option value="{{ i.code }}" label="{{ i.name }}">
-        {% endfor %}
-    </datalist>
+<div class="jumbotron jumbotron-fluid  flight-image">
+        <div class="container">
+          <h1 class="display-4">Fetch it!</h1>
+          <p class="lead">This is a data fetching utility for crawling online travel websites.</p>
+        </div>
+      </div>
+   
+<!-- 
+    <form action="/display"  method="POST" id="input_form">
+        <div class="form-group">
+            <label for="source-city-input">Source city</label>
+            <input list="source" class="form-control" name="source_city" id="source-city-input" placeholder="Source city">
+            <datalist id="source">
+            {% for i in iata %}
+            <option value="{{ i.code }}" label="{{ i.name }}">
+            {% endfor %}
+        </datalist>
+        </div>
+        
+        <div class="form-group">
+            <label for="dest-city-input">Destination city</label>
+            <input list="destination" class="form-control" name="destination_city" id="dest-city-input" placeholder="Destination city">
+            <datalist id="destination">
+            {% for i in iata %}
+            <option value="{{ i.code }}" label="{{ i.name }}">
+            {% endfor %}
+        </datalist>
+        </div>
 
-    <input list="destination" name="destination_city" placeholder="Destination City">
-    <datalist id="destination">
-        {% for i in iata %}
-        <option value="{{ i.code }}" label="{{ i.name }}">
-        {% endfor %}
-    </datalist>
+        <div class="form-group">
+            <label for="datepicker">Pick a date</label>
+            <input type="text" class="form-control" id="datepicker" name="date_of_departure" placeholder="yyyy-mm-dd">
+        </div>
+        <input type="submit" class="btn btn-primary" value="Submit">
+    </form>
+ -->
+ 
+    <div class="row">
+            <form action="/display"  method="POST" id="input_form">
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                            <!-- <label for="source-city-input">Source city</label> -->
+                            <label for="source-city-input">Source city</label>
 
-    <!-- <input type="text" name="destination_city" placeholder="Destination City (eg BOS)"> -->
-    <input type="text" id="datepicker" name="date_of_departure" placeholder="yyyy-mm-dd">
-    <input type="checkbox" name="add_to_database" value="yes">Add to database<br>
-    <input type="submit" value="Submit">
-</form>
+                            <input list="source" class="form-control" name="source_city" id="source-city-input" placeholder="Source city">
+                            <datalist id="source">
+                            {% for i in iata %}
+                            <option value="{{ i.code }}" label="{{ i.name }}">
+                            {% endfor %}
+                        </datalist>
+                    </div>
+                    <div class="form-group col-md-4">
+                            <!-- <label for="dest-city-input">Destination city</label> -->
+                            <label for="dest-city-input">Destination city</label>
 
-<a href=" {{ url_for('saved') }}">Saved data in database</a>
+                            <input list="destination" class="form-control" name="destination_city" id="dest-city-input" placeholder="Destination city">
+                            <datalist id="destination">
+                            {% for i in iata %}
+                            <option value="{{ i.code }}" label="{{ i.name }}">
+                            {% endfor %}
+                        </datalist>
+                    </div>
+                    <div class="form-group col-md-2">
+                            <!-- <label for="datepicker">Pick a date</label> -->
+                            <label for="datepicker">Pick a date</label>
+
+                            <input class="form-control" id="datepicker" name="date_of_departure" placeholder="yyyy-mm-dd">
+                    </div>
+                    <div class="col-md-2">
+                            <label id="invisible-lab" for="sub-btn" >.</label>
+
+                            <input id="sub-btn" type="submit" class="form-control btn btn-primary" value="Submit">
+                    </div>
+                </div>
+            </form>
+    </div>
+    
 
 <script>
     $( function() {

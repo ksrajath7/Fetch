@@ -24,6 +24,7 @@ class Journey(db.Model):
     def serialize(self):
         """Return object data in easily serializeable format"""
         return {
+            'id': self.id,
             'origin': self.origin,
             'destination': self.destination,
             'date': self.date,

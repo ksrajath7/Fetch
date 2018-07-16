@@ -5,7 +5,7 @@
 
 <ol>
     {% for d in data %}
-        <a href="/display/{{ d.id }}"><li><h4>{{ d.origin }} ----> {{ d.destination }} [ {{d.date}} ]</h4></li></a>
+        <a href="/export/{{ d.id }}"><li><h4>{{ d.origin }} ----> {{ d.destination }} [ {{d.date}} ]</h4></li></a>
     {% endfor %}
 </ol>
 

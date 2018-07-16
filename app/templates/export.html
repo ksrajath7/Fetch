@@ -1,0 +1,71 @@
+
+
+
+{% extends "base.html" %} {% block content %}
+
+
+<table class="table table-responsive table-bordered table-hover" id="myTable">
+        <tr>
+            <th colspan="5">Date</th>
+            <td colspan="5">{{ data.date }}</td>
+        </tr>
+        <tr>
+            <th colspan="5">From</th>
+            <td colspan="5">{{ data.origin }}</td>
+        </tr>
+        <tr>
+            <th colspan="5">To</th>
+            <td colspan="5">{{ data.destination }}</td>
+        </tr>
+        <tr>
+            <th  colspan="6">Flights</th>
+            <th>Duration</th>
+            <th>Price Per Adult</th>
+            <th>Tax</th>
+        </tr>
+        {% for it in data.itineraries %}
+            <tr>
+                <th>Airline Code</th>
+                <th>Flight Number</th>
+                <th>Origin</th>
+                <th>Destination</th>
+                <th>Arrival Time</th>
+                <th>Departure Time</th>
+                <td rowspan="{{ it.flights|length }}">{{ it.duration }}</td>
+                <td rowspan="{{ it.flights|length }}">{{ it.price_per_adult }}</td>
+                <td rowspan="{{ it.flights|length }}">{{ it.tax }}</td>
+            </tr>
+            {% for flight in it.flights %}
+                <tr>
+                    <td>{{ flight.airline }}</td>
+                    <td>{{ flight.flight_number }}</td>
+                    <td>{{ flight.origin }}</td>
+                    <td>{{ flight.destination }}</td>
+                    <td>{{ flight.arrival_time }}</td>
+                    <td>{{ flight.departure_time }}</td>
+                </tr>
+            {% endfor %}
+        {% endfor %}
+    </table>
+
+
+
+    <script src="{{ url_for('static', filename='js/xlsx.full.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/FileSaver.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/tableexport.js') }}"></script>
+    <script>
+        $("#myTable").tableExport();
+
+
+        $("button").each(function(){
+            $(this).addClass("btn btn-primary");
+        });
+
+        
+
+        
+    </script>
+
+
+
+{% endblock %}

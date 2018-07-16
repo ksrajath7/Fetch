@@ -1,0 +1,32 @@
+/* html,
+body {
+    height: 100%;
+} */
+
+/* .center_div {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+
+.flight-image {
+    background-color: #0091e6;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+
+}
+
+#invisible-lab {
+    visibility: hidden;
+}
+
+
+
+.head-info {
+    display: flex;
+    justify-content: space-between;
+}
+

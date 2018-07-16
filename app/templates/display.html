@@ -1,57 +1,68 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends "base.html" %} {% block content %}
 
 
-<table class="table" id="myTable">
-    <tr>
-        <th colspan="5">Date</th>
-        <td colspan="5">{{ data.date }}</td>
-    </tr>
-    <tr>
-        <th colspan="5">From</th>
-        <td colspan="5">{{ data.origin }}</td>
-    </tr>
-    <tr>
-        <th colspan="5">To</th>
-        <td colspan="5">{{ data.destination }}</td>
-    </tr>
-    <tr>
-        <th  colspan="6">Flights</th>
-        <th>Duration</th>
-        <th>Price Per Adult</th>
-        <th>Tax</th>
-    </tr>
+<a href="/export/{{data.id}}"><button class="btn btn-primary">Export</button></a>
+<h4>There are {{data.itineraries|length}} results from {{data.origin}} to {{data.destination}} on {{data.date}}.</h4>
+<div id="accordion-group" class="panel-group">
     {% for it in data.itineraries %}
-        <tr>
-            <th>Airline Code</th>
-            <th>Flight Number</th>
-            <th>Origin</th>
-            <th>Destination</th>
-            <th>Arrival Time</th>
-            <th>Departure Time</th>
-            <td rowspan="{{ it.flights|length }}">{{ it.duration }}</td>
-            <td rowspan="{{ it.flights|length }}">{{ it.price_per_adult }}</td>
-            <td rowspan="{{ it.flights|length }}">{{ it.tax }}</td>
-        </tr>
-        {% for flight in it.flights %}
-            <tr>
-                <td>{{ flight.airline }}</td>
-                <td>{{ flight.flight_number }}</td>
-                <td>{{ flight.origin }}</td>
-                <td>{{ flight.destination }}</td>
-                <td>{{ flight.arrival_time }}</td>
-                <td>{{ flight.departure_time }}</td>
-            </tr>
-        {% endfor %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+                <h4 class="panel-title">
+                <!-- <a data-toggle="collapse" data-parent="#accordion" href="#{{loop.index}}">{{ it.duration }} {{ it.price_per_adult }}</a> -->
+                <a data-toggle="collapse" data-parent="#accordion" href="#{{loop.index}}">
+                        <div>
+                                <p class="font-weight-bold">Result #{{loop.index}}</p>
+                        </div>
+                        <div class="head-info">
+                            <div class="duration">
+                                    Duration: {{ it.duration }}Hrs
+                            </div>
+                            <div class="price">
+                                    Price: Rs.{{ it.price_per_adult }}
+                            </div>
+                        </div>
+                </a>
+            </h4>
+        </div>
+        <div id="{{loop.index}}" class="panel-collapse collapse in">
+            <div class="panel-body">
+                
+                
+
+                <table class="table table-responsive table-bordered table-hover">
+                    <tr>
+                        <th>Airline</th>
+                        <th>Flight Number</th>
+                        <th>Origin</th>
+                        <th>Destination</th>
+                        <th>Arrival Time</th>
+                        <th>Departure Time</th>
+                    </tr>
+                    {% for flight in it.flights %}
+                    <tr>
+                        <td>{{ flight.airline }}</td>
+                        <td>{{ flight.flight_number }}</td>
+                        <td>{{ flight.origin }}</td>
+                        <td>{{ flight.destination }}</td>
+                        <td>{{ flight.arrival_time }}</td>
+                        <td>{{ flight.departure_time }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
     {% endfor %}
-</table>
+
+</div>
 
 
-<script src="{{ url_for('static', filename='js/xlsx.full.min.js') }}"></script>
-<script src="{{ url_for('static', filename='js/FileSaver.js') }}"></script>
-<script src="{{ url_for('static', filename='js/tableexport.js') }}"></script>
-<script>
-    $("table").tableExport();
-</script>
+
+
+
+
+
+
+
 
 {% endblock %}
