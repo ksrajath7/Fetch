@@ -7,17 +7,15 @@
 
 <div class="list-group ">
     {% for d in data %}
-    <div class="">
-            <a href="#" onclick="del({{ d.id }}); return false;" class="list-group-item list-group-item-action head-info extra-info">{{ d.date }}<i class="fas fa-times"></i></a>
-                <a href="/export/{{ d.id }}" id="{{ d.id }}" class="list-group-item list-group-item-action head-info"
-                            >{{ d.origin }} <i class="fas fa-arrow-right"></i> {{ d.destination }} 
-                        
-                        
-                </a> 
-        </div>
+    <div>
+
+        <p class="list-group-item list-group-item-action head-info extra-info">{{ d.date }}  <a href="#" onclick="del({{ d.id }}); return false;" ><i class="fas fa-times"></i></a> </p>
+            <!-- <a href="#" onclick="del({{ d.id }}); return false;" class="list-group-item list-group-item-action head-info extra-info">{{ d.date }}</a> -->
+            <a href="/export/{{ d.id }}" id="{{ d.id }}" class="list-group-item list-group-item-action head-info">{{ d.origin }} <i class="fas fa-arrow-right"></i> {{ d.destination }}</a> 
+    </div>
         
     {% endfor %}
-    </div>
+</div>
 
 <!-- <table class="table">
     <tr>
