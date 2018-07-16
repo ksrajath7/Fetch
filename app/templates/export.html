@@ -31,9 +31,9 @@
                         <th>Destination</th>
                         <th>Arrival Time</th>
                         <th>Departure Time</th>
-                        <td rowspan="{{ it.flights|length }}">{{ it.duration }}</td>
-                        <td rowspan="{{ it.flights|length }}">{{ it.price_per_adult }}</td>
-                        <td rowspan="{{ it.flights|length }}">{{ it.tax }}</td>
+                        <td rowspan="{{ it.flights|length + 1}}">{{ it.duration }}</td>
+                        <td rowspan="{{ it.flights|length + 1 }}">{{ it.price_per_adult }}</td>
+                        <td rowspan="{{ it.flights|length + 1 }}">{{ it.tax }}</td>
                     </tr>
                     {% for flight in it.flights %}
                         <tr>

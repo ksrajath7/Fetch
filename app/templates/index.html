@@ -12,7 +12,7 @@
             <form action="/display"  method="POST" id="input_form">
                 <div class="form-row">
                     <div class="form-group col-md-4">
-                            <label for="source-city-input">Source city</label>
+                            <label for="source-city-input">Source</label>
 
                             <!-- <input list="source" class="form-control" name="source_city" id="source-city-input" placeholder="Source city">
                             <datalist id="source">
@@ -24,7 +24,7 @@
                             <input type='text'
                                     autocomplete="off"
                                     id='source-city-input'
-                                    placeholder="Source IATA code"
+                                    placeholder="Cochin International Airport"
                                     class='flexdatalist form-control'
                                     data-data = "{{ url_for('static', filename='json/airports.json') }}"
                                     data-search-in='name'
@@ -45,13 +45,13 @@
                             </select> -->
                     </div>
                     <div class="form-group col-md-4">
-                            <label for="dest-city-input">Destination city</label>
+                            <label for="dest-city-input">Destination</label>
 
 
                             <input type='text'
                                     autocomplete="off"
                                     id='dest-city-input'
-                                    placeholder="Destination IATA code"
+                                    placeholder="Logan International Airport"
                                     class='flexdatalist form-control'
                                     data-data = "{{ url_for('static', filename='json/airports.json') }}"
                                     data-search-in='name'
