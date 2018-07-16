@@ -26,7 +26,7 @@
                                     placeholder="Source IATA code"
                                     class='flexdatalist form-control'
                                     data-data = "{{ url_for('static', filename='json/airports.json') }}"
-                                    data-search-in='iata'
+                                    data-search-in='name'
                                     data-visible-properties='["iata","name"]'
                                     data-value-property='iata'
                                     data-selection-required='true'
@@ -52,7 +52,7 @@
                                     placeholder="Destination IATA code"
                                     class='flexdatalist form-control'
                                     data-data = "{{ url_for('static', filename='json/airports.json') }}"
-                                    data-search-in='iata'
+                                    data-search-in='name'
                                     data-visible-properties='["iata","name"]'
                                     data-value-property='iata'
 
