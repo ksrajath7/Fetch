@@ -8,66 +8,80 @@
         </div>
       </div>
    
-<!-- 
-    <form action="/display"  method="POST" id="input_form">
-        <div class="form-group">
-            <label for="source-city-input">Source city</label>
-            <input list="source" class="form-control" name="source_city" id="source-city-input" placeholder="Source city">
-            <datalist id="source">
-            {% for i in iata %}
-            <option value="{{ i.code }}" label="{{ i.name }}">
-            {% endfor %}
-        </datalist>
-        </div>
-        
-        <div class="form-group">
-            <label for="dest-city-input">Destination city</label>
-            <input list="destination" class="form-control" name="destination_city" id="dest-city-input" placeholder="Destination city">
-            <datalist id="destination">
-            {% for i in iata %}
-            <option value="{{ i.code }}" label="{{ i.name }}">
-            {% endfor %}
-        </datalist>
-        </div>
-
-        <div class="form-group">
-            <label for="datepicker">Pick a date</label>
-            <input type="text" class="form-control" id="datepicker" name="date_of_departure" placeholder="yyyy-mm-dd">
-        </div>
-        <input type="submit" class="btn btn-primary" value="Submit">
-    </form>
- -->
- 
     <div class="row">
             <form action="/display"  method="POST" id="input_form">
                 <div class="form-row">
                     <div class="form-group col-md-4">
-                            <!-- <label for="source-city-input">Source city</label> -->
                             <label for="source-city-input">Source city</label>
 
-                            <input list="source" class="form-control" name="source_city" id="source-city-input" placeholder="Source city">
+                            <!-- <input list="source" class="form-control" name="source_city" id="source-city-input" placeholder="Source city">
                             <datalist id="source">
                             {% for i in iata %}
                             <option value="{{ i.code }}" label="{{ i.name }}">
                             {% endfor %}
-                        </datalist>
+                            </datalist> -->
+
+                            <input type='text'
+                                    id='source-city-input'
+                                    placeholder="Source IATA code"
+                                    class='flexdatalist form-control'
+                                    data-data = "{{ url_for('static', filename='json/airports.json') }}"
+                                    data-search-in='iata'
+                                    data-visible-properties='["iata","name"]'
+                                    data-value-property='iata'
+                                    data-selection-required='true'
+                                    name='source_city'>
+
+                            <!-- <input type="hidden" name="source_city" id="scity">
+                            <select class="form-control" id="source-city-input">
+                                {% for i in iata %}
+                                 {% if loop.index == 1 %}
+                                    <option data-cc="{{ i.code }}" selected>{{ i.name }}</option>
+                                    {% else %}
+                                    <option data-cc="{{ i.code }}">{{ i.name }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select> -->
                     </div>
                     <div class="form-group col-md-4">
-                            <!-- <label for="dest-city-input">Destination city</label> -->
                             <label for="dest-city-input">Destination city</label>
 
-                            <input list="destination" class="form-control" name="destination_city" id="dest-city-input" placeholder="Destination city">
+
+                            <input type='text'
+                                    id='dest-city-input'
+                                    placeholder="Destination IATA code"
+                                    class='flexdatalist form-control'
+                                    data-data = "{{ url_for('static', filename='json/airports.json') }}"
+                                    data-search-in='iata'
+                                    data-visible-properties='["iata","name"]'
+                                    data-value-property='iata'
+
+                                    data-selection-required='true'
+                                    name='destination_city'>
+
+                            <!-- <input list="destination" class="form-control" name="destination_city" id="dest-city-input" placeholder="Destination city">
                             <datalist id="destination">
                             {% for i in iata %}
                             <option value="{{ i.code }}" label="{{ i.name }}">
                             {% endfor %}
-                        </datalist>
+                            </datalist> -->
+                            <!-- <input type="hidden" name="destination_city" id="dcity">
+                            <select class="form-control" id="dest-city-input">
+                                    {% for i in iata %}
+                                    {% if loop.index == 1 %}
+                                    <option data-cc="{{ i.code }}" selected>{{ i.name }}</option>
+                                    {% else %}
+                                    <option data-cc="{{ i.code }}">{{ i.name }}</option>
+                                    {% endif %}
+                                    {% endfor %}
+                            </select> -->
+
                     </div>
                     <div class="form-group col-md-2">
                             <!-- <label for="datepicker">Pick a date</label> -->
                             <label for="datepicker">Pick a date</label>
 
-                            <input class="form-control" id="datepicker" name="date_of_departure" placeholder="yyyy-mm-dd">
+                            <input type="text" class="form-control" id="datepicker" name="date_of_departure" placeholder="yyyy-mm-dd">
                     </div>
                     <div class="col-md-2">
                             <label id="invisible-lab" for="sub-btn" >.</label>
@@ -78,9 +92,29 @@
             </form>
     </div>
     
+<!-- <script src="{{ url_for('static', filename='js/jquery-editable-select.js') }}"></script> -->
+
+<script src="{{ url_for('static', filename='js/jquery.flexdatalist.js') }}"></script>
 
 <script>
     $( function() {
+        //         $('#source-city-input').editableSelect({ 
+
+        //         }).on('select.editable-select', function (e, el) {
+        //         // el is the selected item "option"
+        //         $('#source_city').val(el.data('cc'));
+        //     });
+
+        // $('#dest-city-input').editableSelect({ 
+
+        //         }).on('select.editable-select', function (e, el) {
+        //         // el is the selected item "option"
+        //         $('#destination_city').val(el.data('cc'));
+        //     });
+        
+
+    
+
         
         $( "#datepicker" ).datepicker({ minDate: 0 });
         $("#datepicker").on("change", function(){
@@ -88,6 +122,8 @@
             $( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
         })
     });
+
+
 
 </script>
 

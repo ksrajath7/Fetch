@@ -1,6 +1,6 @@
 import requests
 
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect
 from app import app, db
 from app.models import Flight, Itinerary, Journey
 
@@ -58,27 +58,29 @@ def saved():
     data = Journey.query.all()
     return render_template('save.html', data=list(data))
 
-@app.route("/display", methods=['POST'])
+@app.route("/display", methods=['POST', 'GET'])
 def display():
-    origin = request.form.get('source_city')    
-    destination = request.form.get('destination_city')
-    date = request.form.get('date_of_departure')
-    currency = "INR"
+    if (request.method == 'POST'):
+        origin = request.form.get('source_city')    
+        destination = request.form.get('destination_city')
+        date = request.form.get('date_of_departure')
+        currency = "INR"
 
-    res = requests.get("https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search",
-                        params={"apikey": app.config['API_KEY'], "origin": origin,
-                        "destination": destination, "departure_date": date, "currency": currency})
+        res = requests.get("https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search",
+                            params={"apikey": app.config['API_KEY'], "origin": origin,
+                            "destination": destination, "departure_date": date, "currency": currency})
 
-    if res.status_code != 200:
-        return "<h1>ERROR: API request unsuccessful.</h1>"
+        if res.status_code != 200:
+            return "<h1>ERROR: API request unsuccessful.</h1>"
 
-    data = res.json()
+        data = res.json()
 
-    
-    journey_id = add_to_database(origin, destination, date,  data)
-    return render_template("display.html", data=Journey.query.get(journey_id).serialize)
-
-    
+        
+        journey_id = add_to_database(origin, destination, date,  data)
+        return render_template("display.html", data=Journey.query.get(journey_id).serialize)
+    else:
+        return redirect("/", code=302)
+        
 
 
 @app.route("/export/<int:journey_id>", methods=['GET'])

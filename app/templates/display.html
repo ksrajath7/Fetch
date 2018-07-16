@@ -2,10 +2,11 @@
 
 
 <a href="/export/{{data.id}}"><button class="btn btn-primary">Export</button></a>
-<h4>There are {{data.itineraries|length}} results from {{data.origin}} to {{data.destination}} on {{data.date}}.</h4>
+<h5>There are {{data.itineraries|length}} results from {{data.origin}} to {{data.destination}} on {{data.date}}.</h5>
 <div id="accordion-group" class="panel-group">
     {% for it in data.itineraries %}
     <div class="panel panel-default">
+        
         <div class="panel-heading">
                 <h4 class="panel-title">
                 <!-- <a data-toggle="collapse" data-parent="#accordion" href="#{{loop.index}}">{{ it.duration }} {{ it.price_per_adult }}</a> -->
@@ -25,7 +26,7 @@
             </h4>
         </div>
         <div id="{{loop.index}}" class="panel-collapse collapse in">
-            <div class="panel-body">
+            <div class="panel-body" style="overflow-x:auto;">
                 
                 
 
