@@ -3,8 +3,6 @@
 Fetch is a web application made using Flask. It helps you access flight information like price, duration and date. 
 It also lets you export the data in csv, xlsx or txt formats.
 
-#### Developing
-
 ##### Built With
 * Flask
 * jQuery
@@ -35,7 +33,7 @@ flask run
 https://developers.amadeus.com/self-service/category/203/api-doc/4/api-docs-and-example/10002
 
 ##### Database
-Postgresql (9.5)
+* Postgresql (9.5)
 https://www.postgresql.org/docs/9.5/static/release-9-5.html
 
 ##### Models
