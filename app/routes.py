@@ -8,49 +8,6 @@ from app.helper import add_to_database, refactor_data
 
 @app.route("/")
 def index():
-    # iata = [
-    #     {'name': 'New Delhi, India',
-    #      'code': 'DEL'},
-    #     {'name': 'Mumbai, India',
-    #      'code': 'BOM'},
-    #      {'name': 'Bangalore, India',
-    #      'code': 'BLR'},
-    #      {'name': 'Goa, India',
-    #      'code': 'GOI'},
-    #      {'name': 'Chennai, India',
-    #      'code': 'MAA'},
-    #      {'name': 'Kolkata, India',
-    #      'code': 'CCU'},
-    #      {'name': 'HYD, India',
-    #      'code': 'HYD'},
-    #      {'name': 'Pune, India',
-    #      'code': 'PNQ'},
-    #      {'name': 'Ahmedabad, India',
-    #      'code': 'AMD'},
-    #      {'name': 'Cochin, India',
-    #      'code': 'COK'},
-    #      {'name': 'Jaipur, India',
-    #      'code': 'JAI'},
-    #      {'name': 'Dubai, UAE',
-    #      'code': 'DXB'},
-    #      {'name': 'Singapore, Singapore',
-    #      'code': 'SIN'},
-    #      {'name': 'Bangkok, Thailand',
-    #      'code': 'DEL'},
-    #      {'name': 'New York, US - All Airports',
-    #      'code': 'NYC'},
-    #      {'name': 'Kuala Lumpur, Malaysia',
-    #      'code': 'KUL'},
-    #      {'name': 'London, UK - All Airports',
-    #      'code': 'LON'},
-    #      {'name': 'Hong Kong, China',
-    #      'code': 'HKG'},
-    #      {'name': 'Doha, Qatar',
-    #      'code': 'DOH'},
-    #      {'name': 'Colombo, Sri Lanka',
-    #      'code': 'CMB'}
-    # ]
-
     return render_template("index.html")
 
 @app.route("/saved", methods=['GET'])
@@ -71,7 +28,7 @@ def display():
                             "destination": destination, "departure_date": date, "currency": currency})
 
         if res.status_code != 200:
-            return "<h1>ERROR: API request unsuccessful.</h1>"
+            return render_template("error.html"), 404
 
         data = res.json()
 
@@ -79,9 +36,12 @@ def display():
         journey_id = add_to_database(origin, destination, date,  data)
         return render_template("display.html", data=Journey.query.get(journey_id).serialize)
     else:
-        return redirect("/", code=302)
+        return render_template('error.html'), 404
         
 
+@app.route("/error", methods=['GET'])
+def error():
+    return render_template("error.html")
 
 @app.route("/export/<int:journey_id>", methods=['GET'])
 def export(journey_id):

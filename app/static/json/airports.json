@@ -1,5 +1,84 @@
 [
     {
+        "name": "New Delhi, India",
+        "iata": "DEL"
+    }, 
+    {
+        "name": "Mumbai, India",
+        "iata": "BOM"
+    }, 
+    {
+        "name": "Bangalore, India",
+        "iata": "BLR"
+    }, 
+    {
+        "name": "Goa, India",
+        "iata": "GOI"
+    }, 
+    {
+        "name": "Chennai, India",
+        "iata": "MAA"
+    }, 
+    {
+        "name": "Kolkata, India",
+        "iata": "CCU"
+    }, 
+    {
+        "name": "HYD, India",
+        "iata": "HYD"
+    }, {
+        "name": "Pune, India",
+        "iata": "PNQ"
+    }, 
+    {
+        "name": "Ahmedabad, India",
+        "iata": "AMD"
+    }, 
+    {
+        "name": "Cochin, India",
+        "iata": "COK"
+    }, 
+    {
+        "name": "Jaipur, India",
+        "iata": "JAI"
+    }, 
+    {
+        "name": "Dubai, UAE",
+        "iata": "DXB"
+    }, 
+    {
+        "name": "Singapore, Singapore",
+        "iata": "SIN"
+    }, 
+    {
+        "name": "Bangkok, Thailand",
+        "iata": "DEL"
+    }, 
+    {
+        "name": "New York, US - All Airports",
+        "iata": "NYC"
+    }, 
+    {
+        "name": "Kuala Lumpur, Malaysia",
+        "iata": "KUL"
+    }, 
+    {
+        "name": "London, UK - All Airports",
+        "iata": "LON"
+    }, 
+    {
+        "name": "Hong Kong, China",
+        "iata": "HKG"
+    }, 
+    {
+        "name": "Doha, Qatar",
+        "iata": "DOH"
+    }, 
+    {
+        "name": "Colombo, Sri Lanka",
+        "iata": "CMB"
+    },
+    {
         "iata": "UTK",
         "lon": "169.86667",
         "iso": "MH",

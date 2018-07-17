@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<div class="container">
+    <!-- Jumbotron -->
+    <div class="jumbotron">
+      <h1><i class="fa fa-frown-o red"></i> Oops!</h1>
+      <p class="lead">We couldn't find what you're looking for on <em><span id="display-domain"></span></em>.</p>
+      <p><a href="{{ url_for('index') }}" class="btn btn-default btn-lg"><span class="green">Go back to Home</span></a>
+      </p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="body-content">
+      <div class="row">
+        <div class="col-md-6">
+          <h2>What happened?</h2>
+          <p class="lead">We were unable to find any data to satisfy your request.</p>
+        </div>
+        <div class="col-md-6">
+          <h2>What can I do?</h2>
+          <p class="lead">You could try changing the source, destination or date.</p>
+       </div>
+      </div>
+    </div>
+
+{% endblock %}
