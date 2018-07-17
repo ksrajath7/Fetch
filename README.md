@@ -29,12 +29,11 @@ flask run
 * API_KEY = *Amadeus API key*
 * FLASK_APP=app
 
-##### Api Reference
+##### API Reference
 https://developers.amadeus.com/self-service/category/203/api-doc/4/api-docs-and-example/10002
 
 ##### Database
-* Postgresql (9.5)
-https://www.postgresql.org/docs/9.5/static/release-9-5.html
+[Postgresql (9.5)](https://www.postgresql.org/docs/9.5/static/release-9-5.html)
 
 ##### Models
 * Journey
