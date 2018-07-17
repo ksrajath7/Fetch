@@ -25,9 +25,8 @@ flask run
 ```
 
 ##### Configuration
-* DATABASE_URL = *Your database URI*
+* SQLALCHEMY_DATABASE_URI = *Your database URI*
 * API_KEY = *Amadeus API key*
-* FLASK_APP=app
 
 ##### API Reference
 https://developers.amadeus.com/self-service/category/203/api-doc/4/api-docs-and-example/10002
