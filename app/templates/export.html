@@ -53,15 +53,19 @@
 
 
 
-    <script src="{{ url_for('static', filename='js/xlsx.full.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/Blob.js') }}"></script>
     <script src="{{ url_for('static', filename='js/FileSaver.js') }}"></script>
     <script src="{{ url_for('static', filename='js/tableexport.js') }}"></script>
     <script>
-        $("#myTable").tableExport();
+        $("#myTable").tableExport({
+            formats: ['csv'],
+            filename: "{{data.origin}}-{{data.destination}}-{{data.date}}"
+
+        });
 
 
         $("button").each(function(){
-            $(this).addClass("btn btn-default");
+            $(this).addClass("btn btn-info");
         });
 
         
