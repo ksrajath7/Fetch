@@ -7,7 +7,7 @@ It also lets you export the data in csv, xlsx or txt formats.
 
 ##### Built With
 * Flask
-* JQuery
+* jQuery
 * SQLAlchemy
 * Bootstrap
 
