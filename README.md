@@ -1,50 +1,43 @@
 # Fetch
-Data fetching utility for crawling online travel websites.
-
-Fetch helps you access flight information like price, duration and date. 
+#### Data fetching utility for crawling online travel websites.
+Fetch is a web application made using Flask. It helps you access flight information like price, duration and date. 
 It also lets you export the data in csv, xlsx or txt formats.
 
+##### Built With
+* Flask
+* jQuery
+* SQLAlchemy
+* Bootstrap
 
-Installing
 
+##### Prerequisites
+* Python 3.6
+* pip
+
+##### Setting up environment
+```
+git clone git@github.com:naveencode/Fetch.git
 pip install pipenv
-
 cd Fetch
-
 pipenv install --python 3.6
+pipenv shell
+flask run
+```
 
+##### Configuration
+* SQLALCHEMY_DATABASE_URI = *Your database URI*
+* API_KEY = *Amadeus API key*
 
-Developing
-
-Built With
-Flask
-JQuery
-SQLAlchemy
-
-Prerequisites
-Python 3.6
-
-Setting up Dev
-
-git clone ;;
-cd Fetch/
-pip install pipenv
-pipenv install --python 3.6
-
-flask run (main.py)
-
-
-Configuration
-DATABASE_URL
-API_KEY
-
-Api Reference
+##### API Reference
 https://developers.amadeus.com/self-service/category/203/api-doc/4/api-docs-and-example/10002
 
-Database
-Postgres (version)
+##### Database
+[Postgresql (9.5)](https://www.postgresql.org/docs/9.5/static/release-9-5.html)
 
-Journey, Itineraries, Flights
+##### Models
+* Journey
+* Itinerary
+* Flight
 
 
 
