@@ -1,0 +1,81 @@
+[
+    {
+        "name": "New Delhi, India (DEL)",
+        "iata": "DEL"
+    }, 
+    {
+        "name": "Mumbai, India (BOM)",
+        "iata": "BOM"
+    }, 
+    {
+        "name": "Bangalore, India (BLR)",
+        "iata": "BLR"
+    }, 
+    {
+        "name": "Goa, India (GOI)",
+        "iata": "GOI"
+    }, 
+    {
+        "name": "Chennai, India (MAA)",
+        "iata": "MAA"
+    }, 
+    {
+        "name": "Kolkata, India (CCU)",
+        "iata": "CCU"
+    }, 
+    {
+        "name": "HYD, India (HYD)",
+        "iata": "HYD"
+    }, {
+        "name": "Pune, India (PNQ)",
+        "iata": "PNQ"
+    }, 
+    {
+        "name": "Ahmedabad, India (AMD)",
+        "iata": "AMD"
+    }, 
+    {
+        "name": "Cochin, India (COK)",
+        "iata": "COK"
+    }, 
+    {
+        "name": "Jaipur, India (JAI)",
+        "iata": "JAI"
+    }, 
+    {
+        "name": "Dubai, UAE (DXB)",
+        "iata": "DXB"
+    }, 
+    {
+        "name": "Singapore, Singapore (SIN)",
+        "iata": "SIN"
+    }, 
+    {
+        "name": "Bangkok, Thailand (DEL)",
+        "iata": "DEL"
+    }, 
+    {
+        "name": "New York, US - All Airports (NYC)",
+        "iata": "NYC"
+    }, 
+    {
+        "name": "Kuala Lumpur, Malaysia (KUL)",
+        "iata": "KUL"
+    }, 
+    {
+        "name": "London, UK - All Airports (LON)",
+        "iata": "LON"
+    }, 
+    {
+        "name": "Hong Kong, China (HKG)",
+        "iata": "HKG"
+    }, 
+    {
+        "name": "Doha, Qatar (DOH)",
+        "iata": "DOH"
+    }, 
+    {
+        "name": "Colombo, Sri Lanka (CMB)",
+        "iata": "CMB"
+    }
+]

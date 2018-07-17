@@ -12,7 +12,7 @@
             <form action="/display"  method="POST" id="input_form">
                 <div class="form-row">
                     <div class="form-group col-md-4">
-                            <label for="source-city-input">Source</label>
+                            <label for="source-city-input">Source (IATA)</label>
 
                             <!-- <input list="source" class="form-control" name="source_city" id="source-city-input" placeholder="Source city">
                             <datalist id="source">
@@ -24,13 +24,13 @@
                             <input type='text'
                                     autocomplete="off"
                                     id='source-city-input'
-                                    placeholder="Cochin International Airport"
+                                    placeholder="COK"
                                     class='flexdatalist form-control'
-                                    data-data = "{{ url_for('static', filename='json/airports.json') }}"
-                                    data-search-in='name'
-                                    data-visible-properties='["iata","name"]'
+                                    data-data = "{{ url_for('static', filename='json/common.json') }}"
+                                    data-search-in='["iata","name"]'
+                                    data-visible-properties='["name"]'
                                     data-value-property='iata'
-                                    data-selection-required='true'
+                                    data-selection-required='false'
                                     name='source_city'>
 
                             <!-- <input type="hidden" name="source_city" id="scity">
@@ -45,20 +45,19 @@
                             </select> -->
                     </div>
                     <div class="form-group col-md-4">
-                            <label for="dest-city-input">Destination</label>
+                            <label for="dest-city-input">Destination (IATA)</label>
 
 
                             <input type='text'
                                     autocomplete="off"
                                     id='dest-city-input'
-                                    placeholder="Indira Gandhi International Airport"
+                                    placeholder="BOS"
                                     class='flexdatalist form-control'
-                                    data-data = "{{ url_for('static', filename='json/airports.json') }}"
-                                    data-search-in='name'
-                                    data-visible-properties='["name","iata"]'
+                                    data-data = "{{ url_for('static', filename='json/common.json') }}"
+                                    data-search-in='["iata","name"]'
+                                    data-visible-properties='["name"]'
                                     data-value-property='iata'
-
-                                    data-selection-required='true'
+                                    data-selection-required='false'
                                     name='destination_city'>
 
                             <!-- <input list="destination" class="form-control" name="destination_city" id="dest-city-input" placeholder="Destination city">
