@@ -6,15 +6,15 @@ It also lets you export the data in csv, xlsx or txt formats.
 #### Developing
 
 ##### Built With
-Flask
-JQuery
-SQLAlchemy
-Bootstrap
+* Flask
+* JQuery
+* SQLAlchemy
+* Bootstrap
 
 
 ##### Prerequisites
-Python 3.6
-pip
+* Python 3.6
+* pip
 
 ##### Setting up environment
 ```
@@ -27,18 +27,21 @@ flask run
 ```
 
 ##### Configuration
-DATABASE_URL
-API_KEY
-FLASK_APP=app
+* DATABASE_URL = *Your database URI*
+* API_KEY = *Amadeus API key*
+* FLASK_APP=app
 
 ##### Api Reference
 https://developers.amadeus.com/self-service/category/203/api-doc/4/api-docs-and-example/10002
 
 ##### Database
 Postgresql (9.5)
+https://www.postgresql.org/docs/9.5/static/release-9-5.html
 
-###### Models
-Journey, Itinerary, Flight
+##### Models
+* Journey
+* Itinerary
+* Flight
 
 
 
